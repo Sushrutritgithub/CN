@@ -1,0 +1,60 @@
+
+============================
+ Networking Commands Cheat-Sheet
+============================
+
+--- Windows Commands ---
+1. ipconfig                -> Show IP configuration
+2. ipconfig /all           -> Detailed IP info
+3. ipconfig /release       -> Release IP address (DHCP)
+4. ipconfig /renew         -> Renew IP address (DHCP)
+5. ipconfig /displaydns    -> Show DNS cache
+6. ipconfig /flushdns      -> Clear DNS cache
+7. ping <host>             -> Test connectivity
+8. tracert <host>          -> Trace route to host
+9. nslookup <domain>       -> DNS lookup
+10. netstat -an            -> Show active connections
+11. netstat -r             -> Show routing table
+12. arp -a                 -> Show ARP table
+13. getmac                 -> Show MAC address
+14. netsh wlan show networks  -> Show Wi-Fi networks
+15. netsh interface ip show config -> Show interface config
+16. telnet <host> <port>   -> Test port connectivity (needs Telnet client)
+
+--- Fedora (Linux) Commands ---
+1. ip addr show            -> Show IP addresses
+2. ifconfig                -> Show IP configuration (needs net-tools)
+3. dhclient -r             -> Release IP (DHCP)
+4. dhclient                -> Renew IP (DHCP)
+5. ip route show           -> Show routing table
+6. netstat -r              -> Show routing table (net-tools)
+7. ss -tulnp               -> Show active connections
+8. netstat -tulnp          -> Show active connections (net-tools)
+9. ping <host>             -> Test connectivity
+10. traceroute <host>      -> Trace route (requires traceroute package)
+11. tracepath <host>       -> Alternative to traceroute
+12. dig <domain>           -> DNS lookup (requires bind-utils)
+13. nslookup <domain>      -> DNS lookup
+14. arp -n                 -> Show ARP table (net-tools)
+15. ip neigh show          -> Show ARP/neighbors
+16. ip link show           -> Show network interfaces & MAC
+17. nmcli dev status       -> Show network device status
+18. nmcli dev wifi list    -> Show Wi-Fi networks
+19. resolvectl status      -> Show DNS resolver status
+20. systemd-resolve --flush-caches -> Flush DNS cache
+21. nc <host> <port>       -> Test port connectivity
+22. telnet <host> <port>   -> Test port connectivity (needs telnet)
+23. curl <url>             -> Fetch web content (Application layer)
+24. wget <url>             -> Download files
+
+============================
+Notes:
+- On Fedora, install `net-tools` for ifconfig, netstat, arp:
+  sudo dnf install net-tools
+
+- On Fedora, install traceroute:
+  sudo dnf install traceroute
+
+- On Fedora, install dig (bind-utils):
+  sudo dnf install bind-utils
+============================
