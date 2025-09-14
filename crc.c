@@ -2,8 +2,8 @@
 #include <string.h>
 
 int main() {
-    char data[50], divisor[10], temp[50], remainder[10];
-    int i, j, datalen, divlen;
+    char data[50], divisor[10], codeword[60];
+    int datalen, divlen, i, j;
 
     printf("Enter Data (binary): ");
     scanf("%s", data);
@@ -13,35 +13,24 @@ int main() {
     datalen = strlen(data);
     divlen = strlen(divisor);
 
-    // Append (divlen-1) zeros to data
-    strcpy(temp, data);
-    for (i = 0; i < divlen - 1; i++) {
-        strcat(temp, "0");
-    }
+    strcpy(codeword, data);
+    for (i = 0; i < divlen - 1; i++) strcat(codeword, "0");
 
-    // Copy to remainder
-    strncpy(remainder, temp, divlen);
-    remainder[divlen] = '\0';
-
-    // Division process
     for (i = 0; i < datalen; i++) {
-        if (remainder[0] == '1') {
-            for (j = 1; j < divlen; j++) {
-                remainder[j] = (remainder[j] == divisor[j]) ? '0' : '1';
+        if (codeword[i] == '1') {
+            for (j = 0; j < divlen; j++) {
+                codeword[i + j] = (codeword[i + j] == divisor[j]) ? '0' : '1';
             }
         }
-        // Shift left and bring next bit down
-        for (j = 0; j < divlen - 1; j++) {
-            remainder[j] = remainder[j + 1];
-        }
-        remainder[divlen - 1] = temp[i + divlen];
     }
 
-    printf("\nCRC Remainder: %s\n", remainder);
+    printf("\nCRC Remainder: ");
+    for (i = datalen; i < datalen + divlen - 1; i++) printf("%c", codeword[i]);
 
-    // Append remainder to original data (codeword)
-    strcat(data, remainder);
-    printf("Transmitted Codeword: %s\n", data);
+    strcpy(codeword, data);
+    for (i = datalen; i < datalen + divlen - 1; i++) strncat(codeword, &codeword[i], 1);
+
+    printf("\nTransmitted Codeword: %s\n", codeword);
 
     return 0;
 }
