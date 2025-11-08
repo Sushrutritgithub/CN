@@ -1,0 +1,12 @@
+sudo dnf install openssh-server     # Fedora
+sudo apt install openssh-server     # Ubuntu
+sudo systemctl enable sshd
+sudo systemctl start sshd
+
+sftp user@192.168.1.10
+
+eg 
+sftp user@192.168.1.10
+locate to directory
+put filename
+exit
